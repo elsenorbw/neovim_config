@@ -1,5 +1,8 @@
 vim.cmd [[packadd packer.nvim]]
 
+
+-- N.B. If you are changing this file then you probably need to run PackerSync afterwards
+
 return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use 'wbthomason/packer.nvim'
@@ -10,14 +13,19 @@ return require('packer').startup(function(use)
 		requires = { { 'nvim-lua/plenary.nvim' } }
 	}
 
+   -- bufferline
+  use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
+  --use { "akinsho/nvim-bufferline.lua", tag = "v2.7.0" }
+
 	-- Popups and key helpers
 	use {
 		"folke/which-key.nvim",
+    requires = 'echasnovski/mini.icons'
 	}
 
 	-- Colour scheme
 	use { "catppuccin/nvim", as = "catppuccin" }
-
+use {'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons'}
 	-- Tree sitter - syntax parsing magic
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -60,5 +68,6 @@ return require('packer').startup(function(use)
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     }
   }
+
 
 end)

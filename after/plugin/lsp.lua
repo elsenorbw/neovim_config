@@ -24,6 +24,7 @@ end)
 --
 require('lspconfig').lua_ls.setup({})
 
+
 require('mason').setup({})
 require('mason-lspconfig').setup({
   -- Replace the language servers listed here 
@@ -34,5 +35,26 @@ require('mason-lspconfig').setup({
       require('lspconfig')[server_name].setup({})
     end,
   },
+})
+
+-- Configure Python linting to be less annoying
+require('lspconfig').pylsp.setup({
+  settings = {
+    pylsp = {
+      plugins = {
+        pyflakes = {
+          enabled = false
+        },
+        autopep8 = {
+          enabled = false
+        },
+        pycodestyle = {
+          enabled = true,
+          ignore = {'W291', 'W391'},
+          maxLineLength = 200
+        }
+      }
+    }
+  }
 })
 
